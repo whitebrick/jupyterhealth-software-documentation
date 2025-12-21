@@ -217,17 +217,96 @@ Data types define the structure and schema for health observations using Open mH
 ### Prerequisites for Adding Data Type
 
 - Django shell access (CodeableConcept not available in Django admin)
-- Open mHealth schema for the data type
+- IEEE 1752 schema for the data type (see [IEEE 1752 Schema Repository](https://opensource.ieee.org/omh/1752/-/tree/main/schemas) or [Open mHealth Schemas](https://github.com/openmhealth/schemas) for compatibility)
 - Understanding of FHIR Observation structure
+- Understanding of how data flows from source format to IEEE 1752 schema (see [Understanding Data Mapping](#understanding-data-mapping) below)
 
-### Step 1: Obtain Open mHealth Schema
+### Understanding Data Mapping
+
+Before adding a new data type, it's important to understand how data flows from device-specific formats into the standardized IEEE 1752 format that JupyterHealth Exchange uses.
+
+#### The Data Transformation Flow
+
+```
+┌─────────────────┐      ┌──────────────────┐      ┌─────────────────┐
+│  Device Data    │ ───> │  IEEE 1752 JSON  │ ───> │ FHIR Observation│
+│  (Proprietary)  │      │  (Standardized)  │      │   (Storage)     │
+└─────────────────┘      └──────────────────┘      └─────────────────┘
+   Fitbit, Apple,          header + body             valueAttachment
+   Dexcom, etc.           validated schema           with base64 data
+```
+
+**Step-by-Step:**
+
+1. **Source Data Collection**: Devices (Fitbit, Apple Watch, Dexcom, etc.) collect health data in their proprietary formats
+2. **Transformation to IEEE 1752**: A data collection app (like CommonHealth Android App) transforms the proprietary format into standardized IEEE 1752 JSON format
+3. **FHIR Observation Creation**: The IEEE 1752 JSON is base64-encoded and stored in a FHIR Observation resource's `valueAttachment` field
+4. **Schema Validation**: JupyterHealth Exchange validates the data against the IEEE 1752 schema before accepting it
+
+#### Where Schemas Are Stored
+
+IEEE 1752 schema files are stored in the JupyterHealth Exchange codebase at:
+
+```
+jupyterhealth-exchange/data/omh/json-schemas/
+├── data/          # Data type schemas (blood-pressure, heart-rate, etc.)
+├── metadata/      # Header and data-point structure schemas
+└── utility/       # Utility schemas (time-frame, unit-value, etc.)
+```
+
+**Naming Convention**: Schema files follow the pattern `schema-{coding_code}.json` where:
+- `:` is replaced with `_`
+- `.` is replaced with `-`
+
+**Example**: The coding code `omh:blood-pressure:4.0` maps to the file `schema-omh_blood-pressure_4-0.json`
+
+#### How Validation Works
+
+When an Observation is created or updated, JupyterHealth Exchange performs validation in `core/models.py`:
+
+1. **Header Validation**: Validates the IEEE 1752 header structure against `header-1.0.json`
+2. **Body Validation**: Loads the specific schema file based on the `CodeableConcept.coding_code` and validates the body data
+3. **Schema Registry**: Uses a preloaded schema registry (`core/utils.py`) to resolve schema references without network calls
+
+**Code References**:
+- Schema validation logic: `jupyterhealth-exchange/core/models.py:1484-1503` (Observation.clean() method)
+- Schema registry builder: `jupyterhealth-exchange/core/utils.py:36-58` (build_schema_registry() function)
+
+#### Where the Mapping Happens
+
+The transformation from proprietary device format to IEEE 1752 format typically happens **outside** of JupyterHealth Exchange:
+
+- **Mobile Apps**: The CommonHealth Android App reads device data via APIs (Google Fit, Apple HealthKit, etc.) and transforms it to IEEE 1752 format
+- **Integration Services**: Custom integrations may transform API responses from devices (Dexcom, Fitbit, etc.) into IEEE 1752 format
+- **Manual Tools**: Researchers can use scripts to convert exported device data to IEEE 1752 format
+
+**JupyterHealth Exchange's Role**: JHE doesn't perform the transformation—it validates that incoming data conforms to the IEEE 1752 schema and stores it in FHIR format.
+
+For more details on IEEE 1752 and Open mHealth standards, see [Open mHealth Data Standards](../../explanation/openmhealth-standards.md).
+
+### Step 1: Obtain IEEE 1752 / Open mHealth Schema
 
 #### Check if Schema Exists
 
-Browse the [Open mHealth schema repository](https://github.com/openmhealth/schemas):
+JupyterHealth Exchange uses **IEEE 1752** schemas (the standardized evolution of Open mHealth). Check for available schemas:
 
+**Primary Source - IEEE 1752 Repository**:
+```
+https://opensource.ieee.org/omh/1752/-/tree/main/schemas
+```
+
+**Compatible Source - Open mHealth Repository** (for reference and compatibility):
 ```
 https://github.com/openmhealth/schemas/tree/master/schema
+```
+
+```{note}
+IEEE 1752 is the official IEEE standard that evolved from Open mHealth. JupyterHealth Exchange uses a hybrid approach:
+- **Header/metadata schemas**: IEEE 1752 standard (header-1.0, data-point-1.0, etc.)
+- **Data type body schemas**: Open mHealth schemas with IEEE 1752 utility references
+- **Utility schemas**: Mix of IEEE 1752 and Open mHealth (time-frame, unit-value, etc.)
+
+The data type schemas (blood-pressure, heart-rate, etc.) retain their Open mHealth namespace but reference IEEE 1752 utility schemas for common components. This ensures compatibility while leveraging the IEEE standard's improvements.
 ```
 
 Common schemas available:
