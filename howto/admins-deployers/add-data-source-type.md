@@ -12,7 +12,7 @@ This guide shows you how to add new data sources and data types to JupyterHealth
 ### Adding a New Data Type
 
 - [Prerequisites](#prerequisites-for-adding-data-type)
-- [Step 1: Obtain Open mHealth Schema](#step-1-obtain-open-mhealth-schema)
+- [Step 1: Obtain IEEE 1752 / Open mHealth Schema](#step-1-obtain-ieee-1752--open-mhealth-schema)
 - [Step 2: Review Schema Structure](#step-2-review-schema-structure)
 - [Step 3: Create Example Data Point](#step-3-create-example-data-point)
 - [Step 4: Create CodeableConcept](#step-4-create-codeableconcept)
