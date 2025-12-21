@@ -603,7 +603,7 @@ psql -U postgres -d jhe_dev -c "GRANT ALL ON SCHEMA public TO jheuser;"
 
 ### "Browser shows blank screen after login"
 
-This can happen on Windows. Check the [troubleshooting guide](https://github.com/jupyterhealth/jupyterhealth-exchange/blob/main/doc/troubleshooting-local-dev.md) for OIDC configuration fixes.
+This can happen on Windows. Check your OIDC configuration settings in the `.env` file, particularly the `OIDC_RP_CLIENT_ID` and `OIDC_RP_CLIENT_SECRET` values.
 
 ### "Port 8000 is already in use"
 
