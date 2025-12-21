@@ -18,6 +18,5 @@ Questions help guide us in what to get to first.
 
 Development is discussed in:
 
-- the `#jupyter-health-software` channel on 2i2c's Slack instance
 - we have created a [#jupyterhealth](https://jupyter.zulipchat.com/#narrow/channel/531270-jupyterhealth) channel in the Jupyter Zulip, and are working to move more conversations into the open. Come say hi!
-- the [jupyterhealth/jupyter-health-software](https://github.com/jupyterhealth/jupyter-health-software) github repository
+- the [jupyterhealth/jupyter-health-software](https://github.com/jupyterhealth/jupyter-health-software) GitHub repository - the main software repository containing JupyterHealth platform code, deployment configurations, and technical discussions

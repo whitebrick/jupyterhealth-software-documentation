@@ -27,6 +27,7 @@ Make sure you have these installed on your computer:
 - **PostgreSQL** - Version 12 or newer. Download from [postgresql.org](https://www.postgresql.org/download/)
 - **Git** - Download from [git-scm.com](https://git-scm.com/downloads)
 - **pip** - Should come with Python
+- **pipenv** - Python dependency manager. Detailed installation instructions are provided in Step 1 below
 - **A text editor** - Such as Notepad (Windows), TextEdit (Mac), VS Code, or Sublime Text
 
 You'll also need to be comfortable running commands in a terminal.
@@ -437,13 +438,15 @@ Starting development server at http://localhost:8000/
 Quit the server with CONTROL-C.
 ```
 
+The server is now running! You can click the [http://localhost:8000/](http://localhost:8000/) link above or copy it into your browser.
+
 **Important:** Keep this terminal window open! The server needs to keep running for the website to work. You'll use a web browser in the next step, but don't close this terminal.
 
 🎉 **Congratulations!** Your JupyterHealth Exchange is now running!
 
 ## Step 9: Explore the Web Interface
 
-Open your web browser and go to http://localhost:8000
+Open your web browser and go to [http://localhost:8000](http://localhost:8000)
 
 You'll see the JupyterHealth Exchange login page.
 
@@ -500,9 +503,9 @@ As a superuser, Sam can:
 
 - View and edit all organizations
 - Manage data sources (the devices and apps that generate health data)
-- Access the Django admin panel at http://localhost:8000/admin
+- Access the Django admin panel at [http://localhost:8000/admin](http://localhost:8000/admin)
 
-Try browsing to http://localhost:8000/admin to see Django's built-in administration interface. You can see all the database tables and manage everything from here.
+Try browsing to [http://localhost:8000/admin](http://localhost:8000/admin) to see Django's built-in administration interface. You can see all the database tables and manage everything from here.
 
 ## What You've Learned
 
@@ -613,7 +616,7 @@ Another program is using port 8000. Either stop that program, or run Django on a
 pipenv run python manage.py runserver 8001
 ```
 
-Then access the site at http://localhost:8001
+Then access the site at [http://localhost:8001](http://localhost:8001)
 
 ## Stopping the Server
 
