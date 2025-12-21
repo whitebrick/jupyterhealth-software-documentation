@@ -239,9 +239,9 @@ Before adding a new data type, it's important to understand how data flows from 
 **Step-by-Step:**
 
 1. **Source Data Collection**: Devices (Fitbit, Apple Watch, Dexcom, etc.) collect health data in their proprietary formats
-2. **Transformation to IEEE 1752**: A data collection app (like CommonHealth Android App) transforms the proprietary format into standardized IEEE 1752 JSON format
-3. **FHIR Observation Creation**: The IEEE 1752 JSON is base64-encoded and stored in a FHIR Observation resource's `valueAttachment` field
-4. **Schema Validation**: JupyterHealth Exchange validates the data against the IEEE 1752 schema before accepting it
+1. **Transformation to IEEE 1752**: A data collection app (like CommonHealth Android App) transforms the proprietary format into standardized IEEE 1752 JSON format
+1. **FHIR Observation Creation**: The IEEE 1752 JSON is base64-encoded and stored in a FHIR Observation resource's `valueAttachment` field
+1. **Schema Validation**: JupyterHealth Exchange validates the data against the IEEE 1752 schema before accepting it
 
 #### Where Schemas Are Stored
 
@@ -255,6 +255,7 @@ jupyterhealth-exchange/data/omh/json-schemas/
 ```
 
 **Naming Convention**: Schema files follow the pattern `schema-{coding_code}.json` where:
+
 - `:` is replaced with `_`
 - `.` is replaced with `-`
 
@@ -265,10 +266,11 @@ jupyterhealth-exchange/data/omh/json-schemas/
 When an Observation is created or updated, JupyterHealth Exchange performs validation in `core/models.py`:
 
 1. **Header Validation**: Validates the IEEE 1752 header structure against `header-1.0.json`
-2. **Body Validation**: Loads the specific schema file based on the `CodeableConcept.coding_code` and validates the body data
-3. **Schema Registry**: Uses a preloaded schema registry (`core/utils.py`) to resolve schema references without network calls
+1. **Body Validation**: Loads the specific schema file based on the `CodeableConcept.coding_code` and validates the body data
+1. **Schema Registry**: Uses a preloaded schema registry (`core/utils.py`) to resolve schema references without network calls
 
 **Code References**:
+
 - Schema validation logic: `jupyterhealth-exchange/core/models.py:1484-1503` (Observation.clean() method)
 - Schema registry builder: `jupyterhealth-exchange/core/utils.py:36-58` (build_schema_registry() function)
 
@@ -291,11 +293,13 @@ For more details on IEEE 1752 and Open mHealth standards, see [Open mHealth Data
 JupyterHealth Exchange uses **IEEE 1752** schemas (the standardized evolution of Open mHealth). Check for available schemas:
 
 **Primary Source - IEEE 1752 Repository**:
+
 ```
 https://opensource.ieee.org/omh/1752/-/tree/main/schemas
 ```
 
 **Compatible Source - Open mHealth Repository** (for reference and compatibility):
+
 ```
 https://github.com/openmhealth/schemas/tree/master/schema
 ```
