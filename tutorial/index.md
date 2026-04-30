@@ -8,8 +8,10 @@ Note: [the difference between how-to and tutorial](https://diataxis.fr/tutorials
 
 ## Available Tutorials
 
-- **[Your First Local JupyterHealth Exchange](local-exchange-deployment.md)** - Deploy JupyterHealth Exchange on your computer in 15 minutes and explore example research data
-- **[Deploying JupyterHealth Exchange on Kubernetes](exchange-on-kubernetes.md)** - Deploy a production JupyterHealth Exchange on AWS with Kubernetes
+<!-- - **[Your First Local JupyterHealth Exchange](local-exchange-deployment.md)** - Deploy JupyterHealth Exchange on your computer in 15 minutes and explore example research data
+- **[Deploying JupyterHealth Exchange on Kubernetes](exchange-on-kubernetes.md)** - Deploy a production JupyterHealth Exchange on AWS with Kubernetes -->
+
+
 
 ## Planned Tutorials
 
