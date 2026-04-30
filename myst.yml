@@ -13,44 +13,57 @@ project:
     - file: index.md
     # Note: this toc should reflect _navigation_, not document type
     # document types are a placeholder for now
+    - title: Jupyter Health Exchange
+      children:
+        - file: jhe/getting-started.md
+        - file: jhe/client-flow.md
+        - file: jhe/auth.md
+        - file: jhe/admin-api.md
+        - file: jhe/fhir-api.md
+        - file: jhe/data-model.md
+        # - title: Deploy
+        #   children:
+        #     - file: jhe/deploy/kubernetes.md
+        # - file: tutorial/local-exchange-deployment.md
+        # - file: tutorial/exchange-on-kubernetes.md
+        # - file: tutorial/openmhealth-bp.ipynb
+        # - file: tutorial/tutorial-cgm.ipynb
     - title: Tutorials
       children:
-        - file: tutorial/local-exchange-deployment.md
-        - file: tutorial/exchange-on-kubernetes.md
+        # - file: tutorial/local-exchange-deployment.md
+        # - file: tutorial/exchange-on-kubernetes.md
         - file: tutorial/openmhealth-bp.ipynb
         - file: tutorial/tutorial-cgm.ipynb
-    - title: How-To Guides
-      children:
-        - title: For Admins and Deployment
-          children:
-            - file: howto/admins-deployers/configuring-hipaa-storage.md
-            - file: howto/admins-deployers/add-data-source-type.md
-            - file: howto/admins-deployers/connecting-new-wearable-api.md
-            - file: howto/admins-deployers/upgrading-jupyterhealth.md
-            - file: howto/admins-deployers/troubleshooting-ingestion-errors.md
-        - title: For Clinicians and Researchers
-          children:
-            - file: howto/practitioners/study-management.md
-            - file: howto/practitioners/patient-management.md
-            - file: howto/practitioners/fetching-exporting-data.md
-            - file: howto/practitioners/using-rest-api.md
-    - title: Explanation
-      children:
-        - file: explanation/index.md
-        - file: explanation/exchange-overview.md
-        - file: explanation/fhir-interoperability.md
-        # - file: explanation/openmhealth-standards.md
-        - file: explanation/data-flow.md
-        - file: explanation/consent-management.md
-        - file: explanation/security-overview.md
-        - file: explanation/rbac-governance.md
-        - file: explanation/architecture.md
-    - title: Reference
-      children:
-        - pattern: reference/*
-    - title: Contributing
-      children:
-        - pattern: contributing/*
+    # - title: How-To Guides
+    #   children:
+    #     - title: For Admins and Deployment
+    #       children:
+    #         - file: howto/admins-deployers/configuring-hipaa-storage.md
+    #         - file: howto/admins-deployers/add-data-source-type.md
+    #         - file: howto/admins-deployers/connecting-new-wearable-api.md
+    #         - file: howto/admins-deployers/upgrading-jupyterhealth.md
+    #         - file: howto/admins-deployers/troubleshooting-ingestion-errors.md
+    #     - title: For Clinicians and Researchers
+    #       children:
+    #         - file: howto/practitioners/study-management.md
+    #         - file: howto/practitioners/patient-management.md
+    #         - file: howto/practitioners/fetching-exporting-data.md
+    #         - file: howto/practitioners/using-rest-api.md
+    # - title: Explanation
+    #   children:
+    #     - file: explanation/index.md
+    #     - file: explanation/exchange-overview.md
+    #     - file: explanation/fhir-interoperability.md
+    #     # - file: explanation/openmhealth-standards.md
+    #     - file: explanation/data-flow.md
+    #     - file: explanation/consent-management.md
+    #     - file: explanation/security-overview.md
+    #     - file: explanation/rbac-governance.md
+    #     - file: explanation/architecture.md
+    # - title: Reference
+    #   children:
+    #     - pattern: reference/*
+    - file: contributing/index.md
   error_rules:
     # check-links error ignores
     - rule: link-resolves
@@ -64,7 +77,8 @@ site:
   template: book-theme
   title: JupyterHealth Software
   options:
-    logo: "assets/images/rectanglelogo-jupytergreytext-healthorangetext-orangebody-greymoons-transparent.png"
+    logo: "assets/images/jupyterhealth-logo.png"
+    logo_dark: "assets/images/jupyterhealth-logo.png"
     folders: true
   actions:
     - title: Project Jupyter
