@@ -27,17 +27,17 @@ Every pull request **must** include tests that cover the code you added or chang
 
 ### Test Categories
 
-| Type | Purpose |
-|------|---------|
-| **Unit** | Test a single function/method in isolation |
-| **Integration** | Test multiple components working together |
-| **Regression** | Prove a specific bug stays fixed |
+| Type            | Purpose                                    |
+| --------------- | ------------------------------------------ |
+| **Unit**        | Test a single function/method in isolation |
+| **Integration** | Test multiple components working together  |
+| **Regression**  | Prove a specific bug stays fixed           |
 
 ### Test Requirements
 
 1. **New features**: Unit tests for new functions/methods. At least one integration test.
-2. **Bug fixes**: A regression test that fails before the fix and passes after.
-3. **Refactors**: Existing tests must still pass. Add tests if coverage gaps are found.
+1. **Bug fixes**: A regression test that fails before the fix and passes after.
+1. **Refactors**: Existing tests must still pass. Add tests if coverage gaps are found.
 
 ### Running Tests
 
@@ -68,6 +68,7 @@ pytest tests/test_model_methods.py
 Runtime configuration lives in the database via the `JheSetting` model, accessed through `get_setting(key, default)`.
 
 **Rules:**
+
 - `jhe/settings.py` ENV vars are for **Django startup only** (DB config, `ALLOWED_HOSTS`, middleware).
 - Application code in `core/` must use `get_setting("key", fallback_default)` for runtime values.
 - `get_setting` is imported at the top of `core/models.py`. The circular dependency with `core.jhe_settings.service` is resolved by a lazy import of `JheSetting` inside the service module.
@@ -76,8 +77,9 @@ Runtime configuration lives in the database via the `JheSetting` model, accessed
 ## Reporting Issues
 
 Open a GitHub Issue with:
+
 1. Steps to reproduce
-2. Expected vs actual behavior
-3. Relevant logs or screenshots
+1. Expected vs actual behavior
+1. Relevant logs or screenshots
 
 Tag with appropriate labels (`bug`, `enhancement`, `documentation`).
