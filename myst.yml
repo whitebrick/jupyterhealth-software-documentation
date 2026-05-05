@@ -16,6 +16,7 @@ project:
     - title: Jupyter Health Exchange
       children:
         - file: jhe/getting-started.md
+        - file: jhe/upgrading.md
         - file: jhe/client-flow.md
         - file: jhe/auth.md
         - file: jhe/admin-api.md
@@ -80,6 +81,8 @@ site:
     logo: "assets/images/jupyterhealth-logo.png"
     logo_dark: "assets/images/jupyterhealth-logo.png"
     folders: true
+    navigation:
+      collapse: true
   actions:
     - title: Project Jupyter
       url: https://jupyter.org
