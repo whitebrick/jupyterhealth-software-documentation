@@ -590,21 +590,13 @@ Reference: `jupyterhealth-exchange/core/views/study.py`
 
 ### Step 3: Grant Patient Consent
 
-#### Using JupyterHealth Exchange Console
+```{note}
+**JHE Console Access**: The JupyterHealth Exchange Console is for **Practitioners and Admins only**. Patients cannot and should not log into the Console. Patient consent is managed either:
+- By practitioners via the Console (on behalf of patients)
+- By patients via API or mobile app (CommonHealth)
+```
 
-**Option A: As a Patient**
-
-1. Login as a patient user (e.g., `peter@example.com`, `pamela@example.com`)
-
-1. Navigate to the **Patients** section and view your patient profile
-
-1. In the **Studies Pending Consent** section, you'll see studies requesting data access
-
-1. Review the requested data types/scopes
-
-1. Click the checkbox or consent button to grant access to the requested data
-
-**Option B: As a Practitioner (Manager or Member)**
+#### Using JupyterHealth Exchange Console (Practitioners Only)
 
 Practitioners with **manager** or **member** roles can grant consent on behalf of patients:
 
@@ -618,7 +610,7 @@ Practitioners with **manager** or **member** roles can grant consent on behalf o
 
 **Note**: Practitioners with **viewer** role cannot grant consent.
 
-#### Via API
+#### Via API (Patients or Practitioners)
 
 ```bash
 # Patient consents to share step count data

@@ -13,18 +13,24 @@ JHE has three distinct user types with different authorization models:
 
 ### 1. Patient
 
-**Authorization Model**: Self-access with full control over own data
+**Authorization Model**: API-only access with full control over own data
 
-**Capabilities**:
+```{important}
+**No Console Access**: Patients do NOT have access to the JupyterHealth Exchange Console. The Console is for Practitioners and Admins only. Patients interact with JupyterHealth through:
+- **CommonHealth mobile app** (primary patient interface)
+- **Direct API calls** (for programmatic access)
+```
+
+**Capabilities** (via API or mobile app):
 
 - View own patient record and consent status
 - Modify own consent decisions per study and data type
-- Upload health data to JHE (via CommonHealth app)
+- Upload health data to JHE (via CommonHealth app or FHIR API)
 - Cannot access other patients' data under any circumstances
 
-**No Role Assignment**: Patients do not have roles. They always have complete access to their own records and consent management without requiring organization membership or role assignments.
+**No Role Assignment**: Patients do not have roles. They always have complete access to their own records and consent management via API without requiring organization membership or role assignments.
 
-**Organization Membership**: Patients can be members of multiple organizations via `PatientOrganization` relationships. This membership determines which organizations' studies they can see and consent to, but does not grant them access to organizational management functions.
+**Organization Membership**: Patients can be members of multiple organizations via `PatientOrganization` relationships. This membership determines which organizations' studies they can see and consent to via API, but does not grant them access to the Console or organizational management functions.
 
 ### 2. Practitioner
 
