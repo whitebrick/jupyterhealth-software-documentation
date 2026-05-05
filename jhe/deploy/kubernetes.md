@@ -1,5 +1,5 @@
 ---
-title: 'Kubernetes'
+title: Kubernetes
 downloads:
   - file: ./jhe_kubernetes_template.yaml
     title: jhe_kubernetes_template.yaml
