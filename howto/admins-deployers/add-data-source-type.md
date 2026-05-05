@@ -135,7 +135,7 @@ For each OMH data type the device supports, create a relationship.
 
 1. Repeat for each data type the device supports
 
-**Note**: This feature is available when viewing a data source in read mode.
+**Note**: You can add supported scopes by clicking the "View" (eye icon) button to open the data source details modal. The "Add" button for scopes appears in the viewing modal, not in edit mode.
 
 #### Via Django Shell
 
@@ -150,7 +150,7 @@ apple_watch = DataSource.objects.get(name="Apple Watch")
 # Get data types
 heart_rate = CodeableConcept.objects.get(coding_code="omh:heart-rate:2.0")
 step_count = CodeableConcept.objects.get(coding_code="omh:step-count:2.0")
-blood_oxygen = CodeableConcept.objects.get(coding_code="omh:oxygen-saturation:2.0")
+oxygen_saturation = CodeableConcept.objects.get(coding_code="omh:oxygen-saturation:2.0")
 
 # Create relationships
 DataSourceSupportedScope.objects.create(
@@ -163,7 +163,7 @@ DataSourceSupportedScope.objects.create(
 )
 DataSourceSupportedScope.objects.create(
     data_source=apple_watch,
-    scope_code=blood_oxygen
+    scope_code=oxygen_saturation
 )
 
 # Verify
@@ -325,6 +325,16 @@ Common schemas available:
 - `physical-activity` (v2.0)
 - `body-weight` (v2.0)
 - `body-mass-index` (v2.0)
+
+```{note}
+**Schema Versions**: The versions listed above represent the schemas currently supported in JupyterHealth Exchange. Some Open mHealth schemas have newer versions (e.g., step-count v3.0) that reference IEEE 1752 schemas and mark older versions as deprecated. Before adding a new data type:
+
+1. Check which version is currently used in the JHE codebase (`jupyterhealth-exchange/data/omh/json-schemas/data/`)
+2. If you need a newer version, ensure the schema file and all its dependencies are added to the repository
+3. Update the CodeableConcept with the correct version number
+
+The examples in this documentation use the versions currently available in the JupyterHealth Exchange repository.
+```
 
 #### Download Schema
 
