@@ -4,8 +4,20 @@ updates:
   - package-ecosystem: github-actions
     directory: /
     schedule:
-      interval: daily
+      interval: monthly
+    groups:
+      actions:
+        patterns:
+          - '*'
+    cooldown:
+      default-days: 7
   - package-ecosystem: npm
     directory: /
     schedule:
       interval: weekly
+    groups:
+      npm:
+        patterns:
+          - '*'
+    cooldown:
+      default-days: 7
