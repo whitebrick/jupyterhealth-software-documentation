@@ -85,7 +85,7 @@ The returned `access_token` must be included in the `Authorization` header for a
 
 The [django-saml2-auth](https://github.com/grafana/django-saml2-auth) library is included to support SSO with SAML2.
 
-#### Example SAML2 Flow with [mocksaml.com](mocksaml.com)
+#### Example SAML2 Flow with Mock SAML
 
 Ensure you have the following System Settings
 
