@@ -60,7 +60,7 @@ JHE responds with the grant, eg:
 
 eg: `0wYuXvhoyRfko9yFYl9inpBiNkHLVBMy` has code_verifier `MHdZdVh2aG95UmZrbzl5RllsOWlucEJpTmtITFZCTXk`
 
-- The client constructs a POST body by adding the `code_verifier` to the grant from step 2 above and urlencoding
+- The client constructs a POST body by adding the `code_verifier` to the grant from step 3 above and urlencoding
 
 eg: `grant_type=authorization_code&redirect_uri=http%3A%2F%2Fjhe.tcp.org%2Fauth%2Fcallback&client_id=hxngPvsCo7TR1IgijzqFChfEtZr3Kb3JPEKfM1Rk&code=aTvkFAndYkObdV5CjrygTlc8YpyE4o&code_verifier=MHdZdVh2aG95UmZrbzl5RllsOWlucEJpTmtITFZCTXk`
 
